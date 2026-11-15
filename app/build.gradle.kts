@@ -1,9 +1,13 @@
+
 plugins {
     alias(libs.plugins.android.application)
+
+    kotlin("plugin.serialization") version "1.9.24"
 }
 
 android {
     namespace = "com.example.sigebi"
+
     compileSdk {
         version = release(37)
     }
@@ -25,19 +29,44 @@ android {
             }
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
+
+    // Dependencias originales de Android
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
+
+    // Pruebas
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
+
+    // Serializacion y manejo de JSON
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
+    // Retrofit para consultas a la API
+    implementation("com.squareup.retrofit2:converter-kotlinx-serialization:2.11.0")
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+
+    // Cliente HTTP
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    // Carga de imagenes
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    // Operaciones asincronas
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
 }
