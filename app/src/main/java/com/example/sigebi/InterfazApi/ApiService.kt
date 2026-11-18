@@ -1,6 +1,8 @@
 package com.example.sigebi.InterfazApi
 
 import com.example.sigebi.Modelo.dataLibrosConsulta
+import com.example.sigebi.Modelo.PerfilRespons
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -14,4 +16,8 @@ interface ApiService {
     suspend fun buscarLibros(
         @Query("buscar") buscar: String
     ): dataLibrosConsulta
+
+    //perfil de autenticado
+    @GET("obtener_Perfil.php")
+    suspend fun obtenerPerfil(): Response<PerfilRespons>
 }
