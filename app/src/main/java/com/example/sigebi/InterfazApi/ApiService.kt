@@ -7,7 +7,6 @@ import com.example.sigebi.Modelo.dataLoginRequest
 import com.example.sigebi.Modelo.dataLoginResponse
 import com.example.sigebi.Modelo.dataRespuestaAreas
 import com.example.sigebi.Modelo.dataRespuestaDetalleLibro
-import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
