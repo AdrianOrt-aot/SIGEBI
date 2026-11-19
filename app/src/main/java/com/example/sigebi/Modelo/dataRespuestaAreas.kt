@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 data class dataRespuestaAreas(
     val status: String,
     val message: String,
-    val data: List<dataAreas> = emptyList()
+    val data: List<dataAreas>? = null
 )
