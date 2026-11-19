@@ -349,11 +349,12 @@
             </LinearLayout>
 
             <!-- BOTON EDITAR DATOS -->
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnEditarDatos"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/bg_boton_confirmar"
                 android:backgroundTint="#FFFFFF"
                 android:text="Editar datos"
                 android:textAllCaps="false"
