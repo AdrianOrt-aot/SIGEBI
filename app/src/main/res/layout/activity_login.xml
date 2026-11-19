@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Vista.LoginActivity">
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Imagen de fondo de la UTHH -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/fondo_uthh"
+            android:scaleType="centerCrop"
+            android:contentDescription="@null" />
+
+        <!-- Capa verde transparente -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#990F4B31" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/fondo_login"
+                    android:elevation="8dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <!-- Logotipo oficial -->
+                    <ImageView
+                        android:id="@+id/imgLogo"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+                        android:src="@drawable/logo_bibliotek"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="Logotipo BiblioteK"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="BiblioteK"
+                        android:textColor="#134D31"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="Inicia sesión"
+                        android:textColor="#212121"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="Ingresa tu usuario y contraseña"
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
+
+                    <!-- Usuario -->
+                    <EditText
+                        android:id="@+id/txtUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="30dp"
+                        android:background="@drawable/fondo_campo"
+                        android:hint="Matrícula o No. de control"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:padding="14dp"
+                        android:textColor="#212121"
+                        android:textColorHint="#777777" />
+
+
+                    <!-- Contraseña -->
+                    <EditText
+                        android:id="@+id/txtContrasena"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/fondo_campo"
+                        android:hint="Contraseña"
+                        android:inputType="textPassword"
+                        android:singleLine="true"
+                        android:padding="14dp"
+                        android:textColor="#212121"
+                        android:textColorHint="#777777" />
+
+                    <!-- Botón -->
+                    <Button
+                        android:id="@+id/btnIngresar"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="30dp"
+                        android:backgroundTint="@color/verde_boton"
+                        android:text="Ingresar"
+                        android:textAllCaps="false"
+                        android:textColor="@color/blanco"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
