@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <!-- CABECERA -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:background="#005A32"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="18dp">
+
+        <ImageView
+            android:id="@+id/btnCabeceraIzquierda"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:clickable="true"
+            android:contentDescription="Regresar"
+            android:focusable="true"
+            android:src="@drawable/bk_ic_volver_blanco" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="BiblioteK"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="29sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnNotificaciones"
+            android:layout_width="31dp"
+            android:layout_height="31dp"
+            android:src="@drawable/bk_ic_campana_blanco"
+            android:contentDescription="Notificaciones"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- TITULO DE LA PANTALLA -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:src="@drawable/ic_catalogo"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:text="Detalle del libro"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    android:textColor="#111111" />
+
+            </LinearLayout>
+
+            <!-- PORTADA, TITULO Y AUTOR -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- IMAGEN DESDE LA API -->
+                <ImageView
+                    android:id="@+id/imgPortadaDetalle"
+                    android:layout_width="145dp"
+                    android:layout_height="185dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/bg_fondo_tarjeta"
+                    android:contentDescription="Portada del libro" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="18dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtTituloDetalle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Título del libro"
+                        android:textColor="#111111"
+                        android:textSize="21sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtAutorDetalle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Autor del libro"
+                        android:textSize="15sp"
+                        android:textColor="#333333" />
+
+                    <TextView
+                        android:id="@+id/txtEstadoDetalle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="19dp"
+                        android:background="@drawable/bg_fondo_badge"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="9dp"
+                        android:text="Disponible"
+                        android:textColor="#08620A"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- INFORMACION DEL LIBRO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_fondo_tarjeta"
+                android:elevation="2dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_fondo_cabecera_verde"
+                    android:text="Información del libro"
+                    android:textStyle="bold"
+                    android:textColor="#111111"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="14dp"
+                    android:paddingBottom="14dp"
+                    android:orientation="vertical">
+
+                    <!-- ISBN -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/bk_ic_isbn"
+                            android:contentDescription="@null" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="ISBN:"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:textColor="#222222" />
+
+                        <TextView
+                            android:id="@+id/txtISBN"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="5dp"
+                            android:text="978-607-32-1234-5"
+                            android:textColor="#222222"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- CATEGORIA -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/bk_ic_capas"
+                            android:contentDescription="@null" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="Categoría:"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:textColor="#222222" />
+
+                        <TextView
+                            android:id="@+id/txtCategoriaDetalle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="5dp"
+                            android:text="Programación"
+                            android:textColor="#222222"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- EDITORIAL -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="22dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_catalogo" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="Editorial:"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:textColor="#222222" />
+
+                        <TextView
+                            android:id="@+id/txtEditorial"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="5dp"
+                            android:text="Pearson"
+                            android:textColor="#222222"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- AÑO DE PUBLICACION -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/ic_reservas"
+                            android:contentDescription="@null" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="Año de publicación:"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:textColor="#222222" />
+
+                        <TextView
+                            android:id="@+id/txtAnioPublicacion"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="5dp"
+                            android:text="2021"
+                            android:textColor="#222222"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- EJEMPLARES DISPONIBLES -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/ic_catalogo"
+                            android:contentDescription="@null" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="Ejemplares disponibles:"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:textColor="#222222" />
+
+                        <TextView
+                            android:id="@+id/txtEjemplares"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="5dp"
+                            android:text="3"
+                            android:textColor="#222222"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- DESCRIPCION DEL LIBRO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_fondo_tarjeta"
+                android:elevation="2dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_fondo_cabecera_verde"
+                    android:padding="12dp"
+                    android:text="Descripción"
+                    android:textColor="#111111"
+                    android:textStyle="bold"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtDescripcionLibro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="13dp"
+                    android:background="@drawable/bg_fondo_tarjeta"
+                    android:text="Descripción del libro"
+                    android:textSize="15sp"
+                    android:textColor="#222222" />
+
+            </LinearLayout>
+
+            <!-- BOTON RESERVAR -->
+            <Button
+                android:id="@+id/btnReservarLibro"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="#078500"
+                android:text="Reservar libro"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- NAVEGACION INFERIOR -->
+    <LinearLayout
+        android:id="@+id/barraNavegacion"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/bg_dashboard_card"
+        android:elevation="6dp">
+
+        <!-- INICIO -->
+        <LinearLayout
+            android:id="@+id/navInicio"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_inicio"
+                android:contentDescription="Inicio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inicio"
+                android:textColor="#222222"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <!-- CATALOGO -->
+        <LinearLayout
+            android:id="@+id/navCatalogo"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_dashboard_nav_active"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <FrameLayout
+                android:layout_width="64dp"
+                android:layout_height="36dp">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_catalogo"
+                    android:contentDescription="Catálogo" />
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Catálogo"
+                android:textColor="#087500"
+                android:textStyle="bold"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <!-- RESERVAS -->
+        <LinearLayout
+            android:id="@+id/navReservas"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_reservas"
+                android:contentDescription="Reservas" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reservas"
+                android:textColor="#222222"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <!-- PERFIL -->
+        <LinearLayout
+            android:id="@+id/navPerfil"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_perfil"
+                android:contentDescription="Perfil" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perfil"
+                android:textColor="#222222"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

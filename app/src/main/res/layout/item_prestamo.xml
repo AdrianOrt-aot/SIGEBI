@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardPrestamo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/bg_fondo_tarjeta"
+    android:elevation="3dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="9dp">
+
+    <!-- PORTADA DEL LIBRO -->
+    <ImageView
+        android:id="@+id/imgPortadaPrestamo"
+        android:layout_width="92dp"
+        android:layout_height="120dp"
+        android:background="@drawable/bg_fondo_tarjeta"
+        android:scaleType="centerCrop"
+        android:contentDescription="Portada del libro" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp"
+        android:orientation="vertical">
+
+        <!-- TITULO Y ESTADO -->
+        <TextView
+            android:id="@+id/txtTituloPrestamo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Título del libro"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:textColor="#111111"
+            android:maxLines="2" />
+
+        <TextView
+            android:id="@+id/txtEstadoPrestamo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_fondo_badge"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:text="En curso"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#075B0C" />
+
+        <!-- AUTOR -->
+        <TextView
+            android:id="@+id/txtAutorPrestamo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Autor del libro"
+            android:textSize="13sp"
+            android:textColor="#333333"
+            android:maxLines="2" />
+
+        <!-- FECHA DE PRESTAMO -->
+        <TextView
+            android:id="@+id/txtFechaPrestamo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Fecha de préstamo: --/--/----"
+            android:textSize="12sp"
+            android:textColor="#333333" />
+
+        <!-- FECHA DE DEVOLUCION -->
+        <TextView
+            android:id="@+id/txtFechaDevolucion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Devolución: --/--/----"
+            android:textSize="12sp"
+            android:textColor="#333333" />
+
+    </LinearLayout>
+
+</LinearLayout>

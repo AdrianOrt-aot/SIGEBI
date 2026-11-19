@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <!-- CABECERA -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:background="#005A32"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="18dp">
+
+        <ImageView
+            android:id="@+id/btnMenu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/bk_ic_menu_blanco"
+            android:contentDescription="Menú"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="BiblioteK"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="27sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnNotificaciones"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/bk_ic_campana_blanco"
+            android:contentDescription="Notificaciones"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </LinearLayout>
+
+    <!-- CONTENIDO -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- TITULO -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/bk_ic_capas"
+                android:contentDescription="@null" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mis préstamos y reservas"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    android:textColor="#111111" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Consulta el estado de tus libros"
+                    android:textSize="14sp"
+                    android:textColor="#444444" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- OPCIONES PRESTAMOS Y RESERVAS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="22dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- PRESTAMOS SELECCIONADO -->
+            <LinearLayout
+                android:id="@+id/btnVerPrestamos"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/bg_dashboard_nav_active"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_catalogo"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Préstamos (2)"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- RESERVAS SIN SELECCIONAR -->
+            <LinearLayout
+                android:id="@+id/btnVerReservas"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/bg_fondo_tarjeta"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_marcador"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Reservas (1)"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- TITULO DE LA LISTA -->
+        <TextView
+            android:id="@+id/txtTituloListado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="12dp"
+            android:text="Préstamos activos"
+            android:textColor="#111111"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+
+        <!-- LISTA DESDE LA BASE DE DATOS -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPrestamosReservas"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="8dp" />
+
+        <!-- MENSAJE CUANDO NO HAY REGISTROS -->
+        <TextView
+            android:id="@+id/txtSinPrestamos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:gravity="center"
+            android:text="No tienes préstamos activos"
+            android:textColor="#666666"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <!-- NAVEGACION INFERIOR -->
+    <LinearLayout
+        android:id="@+id/barraNavegacion"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/bg_fondo_tarjeta"
+        android:elevation="5dp">
+
+        <!-- INICIO -->
+        <LinearLayout
+            android:id="@+id/navInicio"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_inicio"
+                android:contentDescription="Inicio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inicio"
+                android:textSize="12sp"
+                android:textColor="#222222" />
+        </LinearLayout>
+
+        <!-- CATALOGO -->
+        <LinearLayout
+            android:id="@+id/navCatalogo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_catalogo"
+                android:contentDescription="Catálogo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Catálogo"
+                android:textSize="12sp"
+                android:textColor="#222222" />
+        </LinearLayout>
+
+        <!-- RESERVAS SELECCIONADO -->
+        <LinearLayout
+            android:id="@+id/navReservas"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_dashboard_nav_active"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <LinearLayout
+                android:layout_width="75dp"
+                android:layout_height="44dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:src="@drawable/ic_reservas"
+                    android:contentDescription="Reservas" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reservas"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="#005A32" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- PERFIL -->
+        <LinearLayout
+            android:id="@+id/navPerfil"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_perfil"
+                android:contentDescription="Perfil" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perfil"
+                android:textSize="12sp"
+                android:textColor="#222222" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
