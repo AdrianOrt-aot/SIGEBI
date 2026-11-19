@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <!-- CABECERA VERDE -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:background="#005A32"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="18dp">
+
+        <ImageView
+            android:id="@+id/btnCabeceraIzquierda"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/bk_ic_volver_blanco"
+            android:contentDescription="Menú"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="BiblioteK"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="29sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnNotificaciones"
+            android:layout_width="31dp"
+            android:layout_height="31dp"
+            android:src="@drawable/bk_ic_campana_blanco"
+            android:contentDescription="Notificaciones"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </LinearLayout>
+
+    <!-- CONTENIDO DEL CATALOGO -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="false"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- TITULO DEL CATALOGO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:src="@drawable/ic_catalogo"
+                    android:contentDescription="@null" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Catálogo de libros"
+                        android:textColor="#101010"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Encuentra el libro que necesitas"
+                        android:textSize="15sp"
+                        android:textColor="#444444" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- BUSCADOR DE LIBROS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="18dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_fondo_busqueda"
+                android:paddingHorizontal="13dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:src="@drawable/bk_ic_buscar"
+                    android:contentDescription="@null" />
+
+                <EditText
+                    android:id="@+id/txtBuscarLibros"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Buscar libros..."
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:textColor="#222222"
+                    android:textColorHint="#555555"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <!-- ENCABEZADO CATEGORIAS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Categorías"
+                    android:textStyle="bold"
+                    android:textColor="#111111"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/btnVerTodasCategorias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:text="Ver todas"
+                    android:textStyle="bold"
+                    android:textColor="#087800"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+            </LinearLayout>
+
+            <!-- TARJETAS DE CATEGORIAS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <!-- TECNOLOGIA -->
+                <LinearLayout
+                    android:id="@+id/btnCategoriaTecnologia"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="4dp"
+                    android:background="@drawable/bg_fondo_categoria"
+                    android:elevation="2dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:src="@drawable/bk_ic_laptop"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Tecnología"
+                        android:textColor="#111111"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <!-- PROGRAMACION -->
+                <LinearLayout
+                    android:id="@+id/btnCategoriaProgramacion"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="4dp"
+                    android:background="@drawable/bg_fondo_categoria"
+                    android:elevation="2dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:src="@drawable/bk_ic_codigo"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Programación"
+                        android:textColor="#111111"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <!-- MATEMATICAS -->
+                <LinearLayout
+                    android:id="@+id/btnCategoriaMatematicas"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="4dp"
+                    android:background="@drawable/bg_fondo_categoria"
+                    android:elevation="2dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:src="@drawable/bk_ic_calculadora"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Matemáticas"
+                        android:textColor="#111111"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- LIBROS DISPONIBLES -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="12dp"
+                android:text="Libros disponibles"
+                android:textColor="#101010"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <!-- LISTA DE LIBROS DESDE LA API -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvLibros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+            <TextView
+                android:id="@+id/txtSinLibros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="No hay libros para mostrar"
+                android:textColor="#666666"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- BARRA DE NAVEGACION INFERIOR -->
+    <LinearLayout
+        android:id="@+id/barraNavegacion"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/bg_dashboard_card"
+        android:elevation="6dp">
+
+        <!-- INICIO -->
+        <LinearLayout
+            android:id="@+id/navInicio"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_inicio"
+                android:contentDescription="Inicio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inicio"
+                android:textColor="#222222"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <!-- CATALOGO ACTIVO -->
+        <LinearLayout
+            android:id="@+id/navCatalogo"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_dashboard_nav_active"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <FrameLayout
+                android:layout_width="64dp"
+                android:layout_height="36dp">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_catalogo"
+                    android:contentDescription="Catálogo" />
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Catálogo"
+                android:textColor="#087500"
+                android:textStyle="bold"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <!-- RESERVAS -->
+        <LinearLayout
+            android:id="@+id/navReservas"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_reservas"
+                android:contentDescription="Reservas" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reservas"
+                android:textColor="#222222"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <!-- PERFIL -->
+        <LinearLayout
+            android:id="@+id/navPerfil"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_perfil"
+                android:contentDescription="Perfil" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perfil"
+                android:textColor="#222222"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

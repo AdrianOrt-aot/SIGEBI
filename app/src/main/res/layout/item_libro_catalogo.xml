@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardLibro"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:padding="9dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/bg_fondo_tarjeta"
+    android:elevation="3dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- PORTADA DEL LIBRO DESDE LA BASE DE DATOS -->
+    <ImageView
+        android:id="@+id/imgPortadaLibro"
+        android:layout_width="104dp"
+        android:layout_height="112dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/bg_fondo_categoria"
+        android:contentDescription="Portada del libro" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="12dp">
+
+        <!-- TITULO DEL LIBRO -->
+        <TextView
+            android:id="@+id/txtTituloLibro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Título del libro"
+            android:textColor="#111111"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:maxLines="2" />
+
+        <!-- AUTOR -->
+        <TextView
+            android:id="@+id/txtAutorLibro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Autor del libro"
+            android:textColor="#303030"
+            android:textSize="13sp"
+            android:maxLines="2" />
+
+        <!-- DISPONIBILIDAD -->
+        <TextView
+            android:id="@+id/txtDisponibilidadLibro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/bg_fondo_badge"
+            android:paddingStart="11dp"
+            android:paddingEnd="11dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="Disponible"
+            android:textColor="#075B0C"
+            android:textStyle="bold"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <!-- FLECHA PARA VER DETALLES -->
+    <ImageView
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/bk_ic_chevron"
+        android:contentDescription="Ver detalle" />
+
+</LinearLayout>

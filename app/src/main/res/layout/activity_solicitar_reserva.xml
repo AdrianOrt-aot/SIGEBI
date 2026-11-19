@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <!-- CABECERA VERDE -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:background="#005A32"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="18dp">
+
+        <ImageView
+            android:id="@+id/btnRegresar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/bk_ic_volver_blanco"
+            android:contentDescription="Regresar"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="BiblioteK"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="27sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btnNotificaciones"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/bk_ic_campana_blanco"
+            android:contentDescription="Notificaciones"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </LinearLayout>
+
+    <!-- CONTENIDO -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- TITULO DE PANTALLA -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@drawable/ic_reservas"
+                    android:contentDescription="@null" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Solicitar reserva"
+                        android:textColor="#111111"
+                        android:textStyle="bold"
+                        android:textSize="23sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Completa los datos para reservar el libro"
+                        android:textColor="#444444"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- TARJETA DEL LIBRO -->
+            <LinearLayout
+                android:id="@+id/cardLibroReserva"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="12dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_fondo_tarjeta">
+
+                <!-- PORTADA DESDE LA BASE DE DATOS -->
+                <ImageView
+                    android:id="@+id/imgPortadaReserva"
+                    android:layout_width="84dp"
+                    android:layout_height="106dp"
+                    android:background="@drawable/bg_fondo_tarjeta"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Portada del libro" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="13dp"
+                    android:orientation="vertical">
+
+                    <!-- TITULO -->
+                    <TextView
+                        android:id="@+id/txtTituloReserva"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Título del libro"
+                        android:textColor="#111111"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:maxLines="2" />
+
+                    <!-- AUTOR -->
+                    <TextView
+                        android:id="@+id/txtAutorReserva"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Autor del libro"
+                        android:textColor="#333333"
+                        android:textSize="13sp"
+                        android:maxLines="2" />
+
+                    <!-- DISPONIBILIDAD -->
+                    <TextView
+                        android:id="@+id/txtEstadoReserva"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_fondo_badge"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="7dp"
+                        android:text="Disponible"
+                        android:textColor="#075B0C"
+                        android:textStyle="bold"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- TARJETA DATOS DE LA RESERVA -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_fondo_tarjeta"
+                android:elevation="2dp">
+
+                <!-- ENCABEZADO -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_fondo_cabecera_verde"
+                    android:padding="12dp"
+                    android:text="Datos de la reserva"
+                    android:textColor="#111111"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <!-- DATOS -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_fondo_tarjeta"
+                    android:padding="12dp">
+
+                    <!-- MATRICULA -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="29dp"
+                            android:layout_height="29dp"
+                            android:src="@drawable/ic_perfil"
+                            android:contentDescription="@null" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Matrícula / No. de control"
+                                android:textSize="12sp"
+                                android:textColor="#222222" />
+
+                            <EditText
+                                android:id="@+id/txtMatriculaReserva"
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:layout_marginTop="4dp"
+                                android:background="@drawable/bg_fondo_tarjeta"
+                                android:hint="Ingresa tu matrícula"
+                                android:inputType="text"
+                                android:singleLine="true"
+                                android:paddingHorizontal="12dp"
+                                android:textColor="#222222"
+                                android:textColorHint="#888888"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- FECHA DE RESERVA -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="29dp"
+                            android:layout_height="29dp"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_reservas" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Fecha de reserva"
+                                android:textSize="12sp"
+                                android:textColor="#222222" />
+
+                            <!-- CAMPO DE FECHA -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="46dp"
+                                android:layout_marginTop="4dp"
+                                android:background="@drawable/bg_fondo_tarjeta"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:paddingHorizontal="10dp">
+
+                                <TextView
+                                    android:id="@+id/txtFechaReserva"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical"
+                                    android:hint="Seleccionar fecha"
+                                    android:textColor="#222222"
+                                    android:textColorHint="#888888"
+                                    android:textSize="14sp"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                                <ImageView
+                                    android:id="@+id/btnSeleccionarFecha"
+                                    android:layout_width="27dp"
+                                    android:layout_height="27dp"
+                                    android:src="@drawable/ic_reservas"
+                                    android:contentDescription="Seleccionar fecha"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- MENSAJE INFORMATIVO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_fondo_cabecera_verde"
+                android:padding="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:text="ⓘ"
+                    android:textColor="#00662A"
+                    android:textSize="27sp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/txtAvisoReserva"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:text="La reserva estará sujeta a la disponibilidad del libro y a la confirmación de la biblioteca."
+                    android:textColor="#222222"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <!-- BOTON CONFIRMAR -->
+            <Button
+                android:id="@+id/btnConfirmarReserva"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="#078500"
+                android:text="Confirmar reserva"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <!-- BOTON CANCELAR -->
+            <Button
+                android:id="@+id/btnCancelarReserva"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#FFFFFF"
+                android:text="Cancelar"
+                android:textAllCaps="false"
+                android:textColor="#333333"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- BARRA INFERIOR -->
+    <LinearLayout
+        android:id="@+id/barraNavegacion"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_fondo_tarjeta"
+        android:elevation="5dp">
+
+        <!-- INICIO -->
+        <LinearLayout
+            android:id="@+id/navInicio"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_inicio"
+                android:contentDescription="Inicio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inicio"
+                android:textColor="#222222"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <!-- CATALOGO SELECCIONADO -->
+        <LinearLayout
+            android:id="@+id/navCatalogo"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_dashboard_nav_active"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <LinearLayout
+                android:layout_width="75dp"
+                android:layout_height="44dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:src="@drawable/ic_catalogo"
+                    android:contentDescription="Catálogo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Catálogo"
+                    android:textColor="#005A32"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- RESERVAS -->
+        <LinearLayout
+            android:id="@+id/navReservas"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_reservas"
+                android:contentDescription="Reservas" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reservas"
+                android:textColor="#222222"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <!-- PERFIL -->
+        <LinearLayout
+            android:id="@+id/navPerfil"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_perfil"
+                android:contentDescription="Perfil" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perfil"
+                android:textColor="#222222"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

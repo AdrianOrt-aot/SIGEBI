@@ -5,10 +5,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class dataAreas(
-    @SerialName("ID_Area") val idArea: Int,
-    @SerialName("Nombre") val nombre: String
+    @SerialName("ID_TipoLibro") val idTipoLibro: Int,
+    @SerialName("TipoLibro") val tipoLibro: String
 ) {
     override fun toString(): String {
-        return nombre
+        return tipoLibro
     }
 }
