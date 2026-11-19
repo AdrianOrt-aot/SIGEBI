@@ -1,11 +1,10 @@
-package com.example.sigebi.Modelo
+package com.example.sigebi.Red
 
 import com.example.sigebi.InterfazApi.ApiService
 import kotlinx.serialization.json.Json
 import okhttp3.Cookie
 import okhttp3.CookieJar
 import okhttp3.HttpUrl
-import kotlin.lazy
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

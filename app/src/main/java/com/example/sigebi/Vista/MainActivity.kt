@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.example.sigebi.Modelo.RetrofitClient
+import com.example.sigebi.Red.RetrofitClient
 import com.example.sigebi.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
