@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -338,25 +339,30 @@
             </LinearLayout>
 
             <!-- BOTON CONFIRMAR -->
-            <Button
+
+            <!-- BOTON CANCELAR -->
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnConfirmarReserva"
                 android:layout_width="match_parent"
                 android:layout_height="53dp"
                 android:layout_marginTop="24dp"
-                android:backgroundTint="#078500"
+                android:background="@drawable/bg_boton_confirmar"
+                android:backgroundTint="@null"
                 android:text="Confirmar reserva"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF"
+                android:textColor="#333333"
                 android:textSize="17sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
 
-            <!-- BOTON CANCELAR -->
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCancelarReserva"
                 android:layout_width="match_parent"
                 android:layout_height="53dp"
                 android:layout_marginTop="8dp"
-                android:backgroundTint="#FFFFFF"
+                android:background="@drawable/bg_fondo_tarjeta"
+                android:backgroundTint="@null"
+                app:backgroundTint="@null"
                 android:text="Cancelar"
                 android:textAllCaps="false"
                 android:textColor="#333333"

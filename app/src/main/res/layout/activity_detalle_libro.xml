@@ -369,6 +369,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="13dp"
+                    android:background="@drawable/bg_fondo_tarjeta"
                     android:text="Descripción del libro"
                     android:textSize="15sp"
                     android:textColor="#222222" />
