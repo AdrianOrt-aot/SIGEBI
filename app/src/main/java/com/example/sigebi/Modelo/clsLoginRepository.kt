@@ -1,5 +1,6 @@
 package com.example.sigebi.Modelo
 
+import com.example.sigebi.Red.RetrofitClient
 import retrofit2.Response
 
 class clsLoginRepository {
