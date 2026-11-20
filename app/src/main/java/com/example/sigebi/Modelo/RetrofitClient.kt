@@ -48,14 +48,11 @@ object RetrofitClient {
     private val clienteHttp = OkHttpClient.Builder().cookieJar(cookieJar).build()
 
     val apiService: ApiService by lazy {
+        val contentType = "application/json".toMediaType()
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(clienteHttp)
-            .addConverterFactory(
-                jsonConfig.asConverterFactory(
-                    "application/json".toMediaType()
-                )
-            )
+            .addConverterFactory(jsonConfig.asConverterFactory(contentType))
             .build()
             .create(ApiService::class.java)
     }
