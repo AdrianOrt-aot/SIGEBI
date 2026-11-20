@@ -31,4 +31,6 @@ data class dataLibro(
 
     @SerialName("Disponibles")
     val disponibles: Int? = null
-)
+) {
+    val urlImagen: String?
+}
