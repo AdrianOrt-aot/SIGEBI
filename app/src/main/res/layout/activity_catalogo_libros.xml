@@ -54,12 +54,12 @@
         </LinearLayout>
 
         <!-- CONTENIDO DEL CATALOGO -->
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:clipToPadding="false"
-            android:fillViewport="false">
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -296,7 +296,7 @@
 
             </LinearLayout>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
         <!-- BARRA DE NAVEGACION INFERIOR -->
         <LinearLayout
