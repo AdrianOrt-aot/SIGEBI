@@ -1,4 +1,5 @@
 package com.example.sigebi.Modelo
+
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -16,10 +17,10 @@ data class PerfilUsuario(
     val ApellidoM: String? = null,
     val Telefono: String? = null,
     val Correo: String? = null,
-    val Ciudad: String,
-    val CP: String,
-    val Colonia: String,
-    val No_Exterior: String,
+    val Ciudad: String? = null,
+    val CP: String? = null,
+    val Colonia: String? = null,
+    val No_Exterior: String? = null,
     val No_Interior: String? = null,
     val Area: String? = null,
     val tipo: String,
