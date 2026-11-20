@@ -24,6 +24,14 @@
                 </DropdownSelection>
                 <DialogSelection />
             </SelectionState>
+            <SelectionState runConfigName="probarConexionLogin()">
+                <option name="selectionMode" value="DROPDOWN" />
+                <DialogSelection />
+            </SelectionState>
+            <SelectionState runConfigName="probarLoginCorrecto()">
+                <option name="selectionMode" value="DROPDOWN" />
+                <DialogSelection />
+            </SelectionState>
         </selectionStates>
     </component>
 </project>

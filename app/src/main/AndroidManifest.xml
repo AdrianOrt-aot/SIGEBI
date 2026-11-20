@@ -29,9 +29,15 @@
 
         </activity>
 
-        <!-- Pantalla principal después del login -->
+        <!-- Pantalla principal despues del Login -->
         <activity
             android:name=".Vista.MainActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Pantalla del catalogo de libros -->
+        <activity
+            android:name=".Vista.ActivityCatalogo"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
