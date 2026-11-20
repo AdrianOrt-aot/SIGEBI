@@ -3,12 +3,13 @@ package com.example.sigebi.Modelo
 import com.example.sigebi.Red.RetrofitClient
 
 class clsLibrosModelo {
-    // Consultar todos los libros
+
+    // Consultar libros con ejemplares disponibles
     suspend fun consultarLibros(): List<dataLibro> {
-        return RetrofitClient.apiService.consultarLibros().libros
+        return RetrofitClient.apiService.consultarLibros().libros.filter { (it.disponibles ?: 0) > 0 }
     }
 
-    // Buscar libros por título, autor o ISBN
+    // Buscar únicamente libros disponibles
     suspend fun buscarLibros(texto: String): List<dataLibro> {
         return RetrofitClient.apiService.buscarLibros(texto).libros
     }
