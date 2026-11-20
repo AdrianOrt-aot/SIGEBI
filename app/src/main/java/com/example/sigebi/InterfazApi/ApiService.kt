@@ -5,8 +5,12 @@ import com.example.sigebi.Modelo.PerfilRespons
 import retrofit2.Response
 import com.example.sigebi.Modelo.dataLoginRequest
 import com.example.sigebi.Modelo.dataLoginResponse
+import com.example.sigebi.Modelo.dataRespuestaApi
 import com.example.sigebi.Modelo.dataRespuestaAreas
 import com.example.sigebi.Modelo.dataRespuestaDetalleLibro
+import com.example.sigebi.Modelo.dataRespuestaResumen
+import com.example.sigebi.Modelo.dataRestablecerPasswordRequest
+import com.example.sigebi.Modelo.dataSolicitarRecuperacionRequest
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -40,4 +44,20 @@ interface ApiService {
     // Obtener todas las areas
     @GET("obtener_areas.php")
     suspend fun obtenerAreas(): dataRespuestaAreas
+
+    // Datos de la pantalla de inicio (requiere sesión)
+    @GET("resumen_usuario.php")
+    suspend fun obtenerResumen(): Response<dataRespuestaResumen>
+
+    // Recuperar contraseña: paso 1, envía el correo con el enlace y el código
+    @POST("solicitar_recuperacion.php")
+    suspend fun solicitarRecuperacion(
+        @Body request: dataSolicitarRecuperacionRequest
+    ): Response<dataRespuestaApi>
+
+    // Recuperar contraseña: paso 2, guarda la nueva contraseña con el código recibido
+    @POST("restablecer_password.php")
+    suspend fun restablecerPassword(
+        @Body request: dataRestablecerPasswordRequest
+    ): Response<dataRespuestaApi>
 }

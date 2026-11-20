@@ -29,6 +29,12 @@
 
         </activity>
 
+        <!-- Recuperar contraseña (desde el Login) -->
+        <activity
+            android:name=".Vista.RecuperarPasswordActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
         <!-- Pantalla principal despues del Login -->
         <activity
             android:name=".Vista.MainActivity"

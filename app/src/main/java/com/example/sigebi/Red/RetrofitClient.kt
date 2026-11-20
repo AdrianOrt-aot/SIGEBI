@@ -2,11 +2,14 @@ package com.example.sigebi.Red
 
 import com.example.sigebi.InterfazApi.ApiService
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import okhttp3.Cookie
 import okhttp3.CookieJar
 import okhttp3.HttpUrl
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 
@@ -31,6 +34,8 @@ object RetrofitClient {
                     antigua.path == nueva.path
                     }
                 }
+
+                cookies.addAll(cookiesNuevas)
             }
         }
 
@@ -41,6 +46,10 @@ object RetrofitClient {
                 cookies.removeAll {it.expiresAt <= ahora}
                 cookies.filter { it.matches(url) }
             }
+        }
+
+        fun limpiar(){
+            synchronized(this) { cookies.clear() }
         }
     }
 
@@ -56,5 +65,16 @@ object RetrofitClient {
             .create(ApiService::class.java)
     }
 
+    fun limpiarSesion() {
+        cookieJar.limpiar()
+    }
 
+    fun mensajeDeError(respuesta: Response<*>): String? {
+        return try {
+            val texto = respuesta.errorBody()?.string() ?: return null
+            jsonConfig.parseToJsonElement(texto).jsonObject["mensaje"]?.jsonPrimitive?.content
+        } catch (e: Exception) {
+            null
+        }
+    }
 }
