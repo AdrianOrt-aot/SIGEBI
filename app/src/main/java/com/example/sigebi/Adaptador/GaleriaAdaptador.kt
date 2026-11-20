@@ -9,21 +9,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sigebi.Modelo.dataLibro
 import com.example.sigebi.R
 
-class GaleriaAdaptador(private var listaLibros: List<dataLibro>):
-    RecyclerView.Adapter<GaleriaAdaptador.GaleriaViewHolder>() {
-    // Antes tenemos que crear una clase Holder
+// Galería horizontal de portadas ("Novedades del catálogo" en MainActivity)
+class GaleriaAdaptador(
+    private var listaLibros: List<dataLibro>,
+    private val alSeleccionar: ((dataLibro) -> Unit)? = null
+) : RecyclerView.Adapter<GaleriaAdaptador.GaleriaViewHolder>() {
+
     class GaleriaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imgPortadaLibro: ImageView = itemView.findViewById(R.id.imgPortadaLibro)
-        val txtTituloLibro: TextView = itemView.findViewById(R.id.txtTituloLibro)
-        val txtAutorLibro: TextView = itemView.findViewById(R.id.txtAutorLibro)
-        val txtDisponibilidadLibro: TextView = itemView.findViewById(R.id.txtDisponibilidadLibro)
+        val imgPortadaLibro: ImageView = itemView.findViewById(R.id.imgPortadaGaleria)
+        val txtTituloLibro: TextView = itemView.findViewById(R.id.txtTituloGaleria)
+        val txtAutorLibro: TextView = itemView.findViewById(R.id.txtAutorGaleria)
     }
 
-    // Estas 3 funciones se van a programar. Son contratos
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GaleriaViewHolder {
-        // Vamos a inflar el layout item_libro_catalogo.xml
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_libro_catalogo, parent, false)
+            .inflate(R.layout.item_libro_galeria, parent, false)
 
         return GaleriaViewHolder(view)
     }
@@ -31,11 +31,13 @@ class GaleriaAdaptador(private var listaLibros: List<dataLibro>):
     override fun onBindViewHolder(holder: GaleriaViewHolder, position: Int) {
         val libro = listaLibros[position]
 
-        // Aqui colocaremos los datos del libro
-        // utilizando las propiedades de dataLibro
+        holder.txtTituloLibro.text = libro.titulo
+        holder.txtAutorLibro.text = libro.autor ?: "Autor no disponible"
 
-        // Aqui cargaremos la portada con Glide
-        // cuando tengamos la propiedad de la imagen
+        // Portada con Glide desde URL_Imagen
+        holder.imgPortadaLibro.cargarPortada(libro.urlImagen)
+
+        holder.itemView.setOnClickListener { alSeleccionar?.invoke(libro) }
     }
 
     override fun getItemCount(): Int {
