@@ -30,5 +30,8 @@ data class dataLibro(
     val totalEjemplares: Int? = null,
 
     @SerialName("Disponibles")
-    val disponibles: Int? = null
+    val disponibles: Int? = null,
+
+    @SerialName("URL_Imagen")
+    val urlImagen: String? = null
 )
