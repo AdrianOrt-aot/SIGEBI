@@ -21,15 +21,12 @@ class clsLibrosPresentador(val vista: ActivityCatalogo) {
     }
 
     fun cargarLibros() {
-
         trabajoBusqueda?.cancel()
-
         trabajoBusqueda = scope.launch {
 
             try {
                 val libros = modeloLibros.consultarLibros()
                 vista.mostrarLibros(libros)
-
             } catch (e: CancellationException) {
                 throw e
 
@@ -48,14 +45,10 @@ class clsLibrosPresentador(val vista: ActivityCatalogo) {
             return
         }
 
-        trabajoBusqueda = scope.launch {
-
-            delay(350)
-
+        trabajoBusqueda = scope.launch { delay(350)
             try {
                 val libros = modeloLibros.buscarLibros(texto.trim())
                 vista.mostrarLibros(libros)
-
             } catch (e: CancellationException) {
                 throw e
 

@@ -1,12 +1,13 @@
-
 package com.example.sigebi.Vista
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -21,6 +22,10 @@ import com.example.sigebi.Presentador.clsLibrosPresentador
 import com.example.sigebi.R
 
 class ActivityCatalogo : AppCompatActivity() {
+    companion object {
+        // Texto a buscar al abrir el catálogo (lo manda MainActivity)
+        const val EXTRA_BUSCAR = "extra_buscar"
+    }
 
     private lateinit var presentador: clsLibrosPresentador
     private lateinit var txtBuscarLibros: EditText
@@ -74,10 +79,39 @@ class ActivityCatalogo : AppCompatActivity() {
         }
         )
 
+        // Si MainActivity mandó un texto, buscarlo (el TextWatcher hace la búsqueda)
+        intent.getStringExtra(EXTRA_BUSCAR)?.let { texto ->
+            txtBuscarLibros.setText(texto)
+            txtBuscarLibros.setSelection(texto.length)
+        }
+
         // Boton regresar
         btnRegresar.setOnClickListener {
             finish()
         }
+
+        // Menú inferior
+        findViewById<LinearLayout>(R.id.navInicio).setOnClickListener { irAInicio() }
+        findViewById<LinearLayout>(R.id.navCatalogo).setOnClickListener {
+            // Ya estamos en el catálogo: limpiar la búsqueda y mostrar todos
+            txtBuscarLibros.setText("")
+        }
+        findViewById<LinearLayout>(R.id.navReservas).setOnClickListener {
+            Toast.makeText(this, "Reservas estará disponible pronto", Toast.LENGTH_SHORT).show()
+        }
+        findViewById<LinearLayout>(R.id.navPerfil).setOnClickListener {
+            Toast.makeText(this, "Perfil estará disponible pronto", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun irAInicio() {
+        if (isTaskRoot) {
+            startActivity(
+                Intent(this, MainActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            )
+        }
+        finish()
     }
 
     // Mostrar los libros recibidos del Presentador

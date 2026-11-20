@@ -47,7 +47,7 @@ class PrestamosAdaptador(
             holder.txtEstado.setTextColor(Color.parseColor("#B3261E"))
         } else {
             holder.txtEstado.text = "En curso"
-            holder.txtEstado.setBackgroundResource(R.drawable.bg_fondo_badge)
+            holder.txtEstado.setBackgroundResource(R.drawable.bg_fondo_badge_rojo)
             holder.txtEstado.setTextColor(Color.parseColor("#075B0C"))
         }
     }
