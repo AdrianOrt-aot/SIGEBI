@@ -1,427 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardLibro"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Vista.ActivityCatalogo">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:padding="9dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/bg_fondo_tarjeta"
+    android:elevation="3dp"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- PORTADA DEL LIBRO DESDE LA BASE DE DATOS -->
+    <ImageView
+        android:id="@+id/imgPortadaLibro"
+        android:layout_width="104dp"
+        android:layout_height="112dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/bg_fondo_categoria"
+        android:contentDescription="Portada del libro" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_marginStart="12dp">
 
-        <!-- CABECERA VERDE -->
-        <LinearLayout
+        <!-- TITULO DEL LIBRO -->
+        <TextView
+            android:id="@+id/txtTituloLibro"
             android:layout_width="match_parent"
-            android:layout_height="76dp"
-            android:background="#005A32"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingHorizontal="18dp">
+            android:layout_height="wrap_content"
+            android:text="Título del libro"
+            android:textColor="#111111"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:maxLines="2" />
 
-            <ImageView
-                android:id="@+id/btnCabeceraIzquierda"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:clickable="true"
-                android:contentDescription="Menú"
-                android:focusable="true"
-                android:src="@drawable/bk_ic_volver_blanco" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="BiblioteK"
-                android:textColor="#FFFFFF"
-                android:textSize="29sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/btnNotificaciones"
-                android:layout_width="31dp"
-                android:layout_height="31dp"
-                android:clickable="true"
-                android:contentDescription="Notificaciones"
-                android:focusable="true"
-                android:src="@drawable/bk_ic_campana_blanco" />
-
-        </LinearLayout>
-
-        <!-- CONTENIDO DEL CATALOGO -->
-        <androidx.core.widget.NestedScrollView
+        <!-- AUTOR -->
+        <TextView
+            android:id="@+id/txtAutorLibro"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:clipToPadding="false"
-            android:fillViewport="true">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Autor del libro"
+            android:textColor="#303030"
+            android:textSize="13sp"
+            android:maxLines="2" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <!-- TITULO DEL CATALOGO -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="49dp"
-                        android:layout_height="49dp"
-                        android:contentDescription="@null"
-                        android:src="@drawable/ic_catalogo" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Catálogo de libros"
-                            android:textColor="#101010"
-                            android:textSize="24sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Encuentra el libro que necesitas"
-                            android:textColor="#444444"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <!-- BUSCADOR DE LIBROS -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:layout_marginTop="18dp"
-                    android:background="@drawable/bg_fondo_busqueda"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="13dp">
-
-                    <ImageView
-                        android:layout_width="23dp"
-                        android:layout_height="23dp"
-                        android:contentDescription="@null"
-                        android:src="@drawable/bk_ic_buscar" />
-
-                    <EditText
-                        android:id="@+id/txtBuscarLibros"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:hint="Buscar libros..."
-                        android:inputType="text"
-                        android:singleLine="true"
-                        android:textColor="#222222"
-                        android:textColorHint="#555555"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-                <!-- ENCABEZADO CATEGORIAS -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Categorías"
-                        android:textColor="#111111"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/btnVerTodasCategorias"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:text="Ver todas"
-                        android:textColor="#087800"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <!-- TARJETAS DE CATEGORIAS -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="4dp"
-                    android:orientation="horizontal">
-
-                    <!-- TECNOLOGIA -->
-                    <LinearLayout
-                        android:id="@+id/btnCategoriaTecnologia"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="4dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_fondo_categoria"
-                        android:clickable="true"
-                        android:elevation="2dp"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="34dp"
-                            android:layout_height="34dp"
-                            android:contentDescription="@null"
-                            android:src="@drawable/bk_ic_laptop" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="Tecnología"
-                            android:textColor="#111111"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                    <!-- PROGRAMACION -->
-                    <LinearLayout
-                        android:id="@+id/btnCategoriaProgramacion"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="4dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_fondo_categoria"
-                        android:clickable="true"
-                        android:elevation="2dp"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="34dp"
-                            android:layout_height="34dp"
-                            android:contentDescription="@null"
-                            android:src="@drawable/bk_ic_codigo" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="Programación"
-                            android:textColor="#111111"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                    <!-- MATEMATICAS -->
-                    <LinearLayout
-                        android:id="@+id/btnCategoriaMatematicas"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="4dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_fondo_categoria"
-                        android:clickable="true"
-                        android:elevation="2dp"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="34dp"
-                            android:layout_height="34dp"
-                            android:contentDescription="@null"
-                            android:src="@drawable/bk_ic_calculadora" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="Matemáticas"
-                            android:textColor="#111111"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <!-- LIBROS DISPONIBLES -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginBottom="12dp"
-                    android:text="Libros disponibles"
-                    android:textColor="#101010"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-                <!-- LISTA DE LIBROS DESDE LA API -->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvLibros"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false" />
-
-                <TextView
-                    android:id="@+id/txtSinLibros"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center"
-                    android:text="No hay libros para mostrar"
-                    android:textColor="#666666"
-                    android:visibility="gone" />
-
-            </LinearLayout>
-
-        </androidx.core.widget.NestedScrollView>
-
-        <!-- BARRA DE NAVEGACION INFERIOR -->
-        <LinearLayout
-            android:id="@+id/barraNavegacion"
-            android:layout_width="match_parent"
-            android:layout_height="76dp"
-            android:background="@drawable/bg_dashboard_card"
-            android:elevation="6dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <!-- INICIO -->
-            <LinearLayout
-                android:id="@+id/navInicio"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
-                    android:contentDescription="Inicio"
-                    android:src="@drawable/ic_inicio" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Inicio"
-                    android:textColor="#222222"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-            <!-- CATALOGO ACTIVO -->
-            <LinearLayout
-                android:id="@+id/navCatalogo"
-                android:layout_width="0dp"
-                android:layout_height="58dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_dashboard_nav_active"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <FrameLayout
-                    android:layout_width="64dp"
-                    android:layout_height="36dp">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_gravity="center"
-                        android:contentDescription="Catálogo"
-                        android:src="@drawable/ic_catalogo" />
-
-                </FrameLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Catálogo"
-                    android:textColor="#087500"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <!-- RESERVAS -->
-            <LinearLayout
-                android:id="@+id/navReservas"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
-                    android:contentDescription="Reservas"
-                    android:src="@drawable/ic_reservas" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Reservas"
-                    android:textColor="#222222"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-            <!-- PERFIL -->
-            <LinearLayout
-                android:id="@+id/navPerfil"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
-                    android:contentDescription="Perfil"
-                    android:src="@drawable/ic_perfil" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Perfil"
-                    android:textColor="#222222"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+        <!-- DISPONIBILIDAD -->
+        <TextView
+            android:id="@+id/txtDisponibilidadLibro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/bg_fondo_activo"
+            android:paddingStart="11dp"
+            android:paddingEnd="11dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="Disponible"
+            android:textColor="#075B0C"
+            android:textStyle="bold"
+            android:textSize="13sp" />
 
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- FLECHA PARA VER DETALLES -->
+    <ImageView
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/bk_ic_chevron"
+        android:contentDescription="Ver detalle" />
+
+</LinearLayout>
