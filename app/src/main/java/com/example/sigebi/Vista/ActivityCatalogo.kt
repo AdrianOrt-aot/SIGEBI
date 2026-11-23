@@ -26,21 +26,17 @@ class ActivityCatalogo : AppCompatActivity() {
         // Texto a buscar al abrir el catálogo (lo manda MainActivity)
         const val EXTRA_BUSCAR = "extra_buscar"
     }
-
     private lateinit var presentador: clsLibrosPresentador
     private lateinit var txtBuscarLibros: EditText
     private lateinit var rvLibros: RecyclerView
     private lateinit var txtSinLibros: TextView
     private lateinit var btnRegresar: ImageView
-
     private lateinit var adaptador: LibrosAdaptador
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         enableEdgeToEdge()
         setContentView(R.layout.activity_catalogo_libros)
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -54,7 +50,11 @@ class ActivityCatalogo : AppCompatActivity() {
         btnRegresar = findViewById(R.id.btnCabeceraIzquierda)
 
         // Configurar RecyclerView
-        adaptador = LibrosAdaptador(emptyList())
+        adaptador = LibrosAdaptador(emptyList()) { libro ->
+            val intent = Intent(this, ActivityDetalleLibro::class.java)
+            intent.putExtra("idLibro", libro.idLibro)
+            startActivity(intent)
+        }
 
         rvLibros.layoutManager = LinearLayoutManager(this)
         rvLibros.adapter = adaptador
@@ -69,11 +69,9 @@ class ActivityCatalogo : AppCompatActivity() {
         txtBuscarLibros.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 presentador.buscarLibros(s.toString())
             }
-
             override fun afterTextChanged(s: Editable?) {
             }
         }

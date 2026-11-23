@@ -47,6 +47,11 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
+        <!-- Pantalla del detalle de un libro -->
+        <activity
+            android:name=".Vista.ActivityDetalleLibro"
+            android:exported="false" />
+
     </application>
 
 </manifest>
