@@ -18,7 +18,6 @@ import com.example.sigebi.R
 class PerfilActivity : AppCompatActivity(), ApiService.View {
 
     private lateinit var presentador: perfilPresentador
-
     private lateinit var progressBar: ProgressBar
     private lateinit var layoutPerfil: LinearLayout
     private lateinit var layoutError: LinearLayout
@@ -47,27 +46,22 @@ class PerfilActivity : AppCompatActivity(), ApiService.View {
 
         // Obtener servicio Retrofit compartido
         val apiService = RetrofitClient.apiService
-
         // Inicializar presentador MVP
         presentador = perfilPresentador(
             this,
             apiService,
             lifecycleScope
         )
-
         // Configurar botón de reintento
         btnReintentar.setOnClickListener {
             solicitarPerfil()
         }
-
         // Cargar perfil al iniciar
         solicitarPerfil()
     }
-
     private fun solicitarPerfil() {
         presentador.cargarPerfil()
     }
-
     override fun mostrarCargando(mostrar: Boolean) {
 
         progressBar.visibility =
@@ -80,11 +74,9 @@ class PerfilActivity : AppCompatActivity(), ApiService.View {
     }
 
     override fun mostrarPerfil(perfil: PerfilUsuario) {
-
         progressBar.visibility = View.GONE
         layoutError.visibility = View.GONE
         layoutPerfil.visibility = View.VISIBLE
-
         // Mostrar nombre completo
         tvNombre.text = listOfNotNull(
             perfil.Nombre,
@@ -93,29 +85,21 @@ class PerfilActivity : AppCompatActivity(), ApiService.View {
         ).filter {
             it.isNotBlank()
         }.joinToString(" ")
-
         // Mostrar correo electrónico
         tvCorreo.text =
             perfil.Correo ?: "Sin correo registrado"
-
         // Mostrar rol o puesto
         tvRol.text =
             perfil.Puesto ?: perfil.tipo
     }
-
     override fun mostrarError(mensaje: String) {
-
         progressBar.visibility = View.GONE
         layoutPerfil.visibility = View.GONE
         layoutError.visibility = View.VISIBLE
-
         tvError.text = mensaje
     }
-
     override fun onDestroy() {
-
         presentador.onDestroy()
-
         super.onDestroy()
     }
 }
