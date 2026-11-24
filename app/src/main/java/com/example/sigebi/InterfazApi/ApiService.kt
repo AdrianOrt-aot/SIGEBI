@@ -1,7 +1,7 @@
 package com.example.sigebi.InterfazApi
 
 import com.example.sigebi.Modelo.dataLibrosConsulta
-import com.example.sigebi.Modelo.PerfilRespons
+import com.example.sigebi.Modelo.dataPerfilResponse
 import com.example.sigebi.Modelo.PerfilUsuario
 import com.example.sigebi.Modelo.dataLoginRequest
 import com.example.sigebi.Modelo.dataLoginResponse
@@ -28,7 +28,7 @@ interface ApiService {
 
     // Obtener perfil del usuario autenticado
     @GET("obtener_Perfil.php")
-    suspend fun obtenerPerfil(): Response<PerfilRespons>
+    suspend fun obtenerPerfil(): Response<dataPerfilResponse>
 
     // Iniciar sesión
     @POST("login.php")
@@ -48,19 +48,13 @@ interface ApiService {
 
     // Contrato de la vista del perfil
     interface View {
-
         fun mostrarCargando(mostrar: Boolean)
-
         fun mostrarPerfil(perfil: PerfilUsuario)
-
         fun mostrarError(mensaje: String)
     }
-
     // Contrato del presentador del perfil
     interface Presenter {
-
         fun cargarPerfil()
-
         fun onDestroy()
     }
 }

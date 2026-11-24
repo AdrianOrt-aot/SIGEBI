@@ -20,7 +20,6 @@ object RetrofitClient {
         coerceInputValues = true
         isLenient = true
     }
-
     private val cookieJar = object : CookieJar {
 
         private val cookies = mutableListOf<Cookie>()
