@@ -51,6 +51,9 @@
             android:name=".Vista.ActivityDetalleLibro"
             android:exported="false" />
         <activity
+            android:name=".Vista.PerfilActivity"
+            android:exported="false" />
+
             android:name=".Vista.ActivitySolicitudes"
             android:exported="false"/>
     </application>
