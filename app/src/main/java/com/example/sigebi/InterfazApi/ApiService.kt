@@ -1,5 +1,9 @@
 package com.example.sigebi.InterfazApi
 
+import com.example.sigebi.Modelo.dataPeticionSolicitud
+import com.example.sigebi.Modelo.dataRespuestaSolicitudes
+import com.example.sigebi.Modelo.dataResultadoSolicitud
+import com.example.sigebi.Modelo.dataTokenCsrf
 import com.example.sigebi.Modelo.dataLibrosConsulta
 import com.example.sigebi.Modelo.PerfilRespons
 import retrofit2.Response
@@ -13,6 +17,7 @@ import com.example.sigebi.Modelo.dataRestablecerPasswordRequest
 import com.example.sigebi.Modelo.dataSolicitarRecuperacionRequest
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -60,4 +65,16 @@ interface ApiService {
     suspend fun restablecerPassword(
         @Body request: dataRestablecerPasswordRequest
     ): Response<dataRespuestaApi>
+
+    //Solicitudes de prestamo
+    @GET("solicitar_prestamo.php")
+    suspend fun obtenerSolicitudes(): Response<dataRespuestaSolicitudes>
+
+    @GET("csrf.php")
+    suspend fun obtenerTokenCsrf(): Response<dataTokenCsrf>
+
+    @POST("solicitar_prestamo.php")
+    suspend fun crearSolicitud(
+        @Header("X-CSRF-Token") token: String,
+        @Body solicitud: dataPeticionSolicitud): Response<dataResultadoSolicitud>
 }

@@ -21,12 +21,11 @@
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.SIGEBI"
             android:windowSoftInputMode="adjustResize">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <!-- Recuperar contraseña (desde el Login) -->
@@ -51,7 +50,9 @@
         <activity
             android:name=".Vista.ActivityDetalleLibro"
             android:exported="false" />
-
+        <activity
+            android:name=".Vista.ActivitySolicitudes"
+            android:exported="false"/>
     </application>
 
 </manifest>

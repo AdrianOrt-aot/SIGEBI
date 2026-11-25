@@ -100,6 +100,12 @@ class ActivityCatalogo : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.navPerfil).setOnClickListener {
             Toast.makeText(this, "Perfil estará disponible pronto", Toast.LENGTH_SHORT).show()
         }
+
+        findViewById<LinearLayout>(R.id.navReservas).setOnClickListener {
+            val intent = Intent(this, ActivitySolicitudes::class.java)
+
+            startActivity(intent)
+        }
     }
 
     private fun irAInicio() {
