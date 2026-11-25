@@ -20,7 +20,9 @@ import com.example.sigebi.Adaptador.LibrosAdaptador
 import com.example.sigebi.Modelo.dataLibro
 import com.example.sigebi.Presentador.clsLibrosPresentador
 import com.example.sigebi.R
-
+import com.example.sigebi.Adaptador.CategoriasAdaptador
+import com.example.sigebi.Modelo.dataAreas
+import com.example.sigebi.Presentador.clsAreasPresentador
 class ActivityCatalogo : AppCompatActivity() {
     companion object {
         // Texto a buscar al abrir el catálogo (lo manda MainActivity)
@@ -32,6 +34,15 @@ class ActivityCatalogo : AppCompatActivity() {
     private lateinit var txtSinLibros: TextView
     private lateinit var btnRegresar: ImageView
     private lateinit var adaptador: LibrosAdaptador
+    private lateinit var rvCategorias: RecyclerView
+    private lateinit var adaptadorCategorias: CategoriasAdaptador
+    private lateinit var presentadorAreas: clsAreasPresentador
+
+    // Guardar los libros recibidos de la API
+    private var librosActuales: List<dataLibro> = emptyList()
+
+    // Guardar la categoria seleccionada
+    private var categoriaSeleccionada: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +59,26 @@ class ActivityCatalogo : AppCompatActivity() {
         rvLibros = findViewById(R.id.rvLibros)
         txtSinLibros = findViewById(R.id.txtSinLibros)
         btnRegresar = findViewById(R.id.btnCabeceraIzquierda)
+        rvCategorias = findViewById(R.id.rvCategorias)
+
+        // Configurar RecyclerView horizontal de categorias
+        rvCategorias.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        // Crear el adaptador de categorias
+        adaptadorCategorias = CategoriasAdaptador(emptyList()) { categoria ->
+
+            if (categoriaSeleccionada == categoria.tipoLibro) {
+                categoriaSeleccionada = null
+            } else {
+                categoriaSeleccionada = categoria.tipoLibro
+            }
+            filtrarPorCategoria()
+        }
+        rvCategorias.adapter = adaptadorCategorias
+
+        // Crear el presentador y consultar la API
+        presentadorAreas = clsAreasPresentador(this)
+        presentadorAreas.cargarAreas()
 
         // Configurar RecyclerView
         adaptador = LibrosAdaptador(emptyList()) { libro ->
@@ -91,8 +122,15 @@ class ActivityCatalogo : AppCompatActivity() {
         // Menú inferior
         findViewById<LinearLayout>(R.id.navInicio).setOnClickListener { irAInicio() }
         findViewById<LinearLayout>(R.id.navCatalogo).setOnClickListener {
-            // Ya estamos en el catálogo: limpiar la búsqueda y mostrar todos
+
+            // Quitar la categoria seleccionada
+            categoriaSeleccionada = null
+
+            // Limpiar la busqueda
             txtBuscarLibros.setText("")
+
+            // Mostrar los libros sin filtro
+            filtrarPorCategoria()
         }
         findViewById<LinearLayout>(R.id.navReservas).setOnClickListener {
             Toast.makeText(this, "Reservas estará disponible pronto", Toast.LENGTH_SHORT).show()
@@ -114,13 +152,12 @@ class ActivityCatalogo : AppCompatActivity() {
 
     // Mostrar los libros recibidos del Presentador
     fun mostrarLibros(libros: List<dataLibro>) {
-        adaptador.actualizarLibros(libros)
 
-        if (libros.isEmpty()) {
-            txtSinLibros.visibility = View.VISIBLE
-        } else {
-            txtSinLibros.visibility = View.GONE
-        }
+        // Guardar los libros de la consulta
+        librosActuales = libros
+
+        // Aplicar la categoria seleccionada
+        filtrarPorCategoria()
     }
 
     // Mostrar errores
@@ -129,7 +166,47 @@ class ActivityCatalogo : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        presentador.detener()
+        presentadorAreas.detener()
         super.onDestroy()
+    }
+
+    // Mostrar las categorias que devuelve la API
+    fun mostrarCategorias(categorias: List<dataAreas>) {
+        adaptadorCategorias.actualizarCategorias(categorias)
+    }
+
+    // Mostrar errores de consulta
+    fun mostrarErrorCategorias(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
+    }
+
+    // Filtrar los libros segun su tipo
+    private fun filtrarPorCategoria() {
+
+        val librosFiltrados: List<dataLibro>
+
+        if (categoriaSeleccionada == null) {
+
+            librosFiltrados = librosActuales
+
+        } else {
+
+            librosFiltrados = librosActuales.filter { libro ->
+                libro.tipoLibro.trim().equals(
+                    categoriaSeleccionada?.trim(),
+                    ignoreCase = true
+                )
+            }
+        }
+
+        // Actualizar el RecyclerView de libros
+        adaptador.actualizarLibros(librosFiltrados)
+
+        // Mostrar mensaje si no existen libros de esa categoria
+        if (librosFiltrados.isEmpty()) {
+            txtSinLibros.visibility = View.VISIBLE
+        } else {
+            txtSinLibros.visibility = View.GONE
+        }
     }
 }
