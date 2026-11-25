@@ -119,11 +119,7 @@ class PerfilActivity : AppCompatActivity(), ApiService.View {
 
         // Ir a reservas
         findViewById<LinearLayout>(R.id.navReservas).setOnClickListener {
-            Toast.makeText(
-                this,
-                "Reservas estará disponible pronto",
-                Toast.LENGTH_SHORT
-            ).show()
+            startActivity(Intent(this, ActivitySolicitudes::class.java))
         }
 
         // Actualizar el perfil
