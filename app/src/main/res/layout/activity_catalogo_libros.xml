@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -138,133 +139,25 @@
                 </LinearLayout>
 
                 <!-- ENCABEZADO CATEGORIAS -->
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:text="Categorías"
+                    android:textColor="#111111"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Categorías"
-                        android:textColor="#111111"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/btnVerTodasCategorias"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:text="Ver todas"
-                        android:textColor="#087800"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <!-- TARJETAS DE CATEGORIAS -->
-                <LinearLayout
+                <!-- CATEGORIAS DESDE LA BASE DE DATOS -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCategorias"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="4dp"
-                    android:orientation="horizontal">
-
-                    <!-- TECNOLOGIA -->
-                    <LinearLayout
-                        android:id="@+id/btnCategoriaTecnologia"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="4dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_fondo_categoria"
-                        android:clickable="true"
-                        android:elevation="2dp"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="34dp"
-                            android:layout_height="34dp"
-                            android:contentDescription="@null"
-                            android:src="@drawable/bk_ic_laptop" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="Tecnología"
-                            android:textColor="#111111"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                    <!-- PROGRAMACION -->
-                    <LinearLayout
-                        android:id="@+id/btnCategoriaProgramacion"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="4dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_fondo_categoria"
-                        android:clickable="true"
-                        android:elevation="2dp"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="34dp"
-                            android:layout_height="34dp"
-                            android:contentDescription="@null"
-                            android:src="@drawable/bk_ic_codigo" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="Programación"
-                            android:textColor="#111111"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                    <!-- MATEMATICAS -->
-                    <LinearLayout
-                        android:id="@+id/btnCategoriaMatematicas"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="4dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_fondo_categoria"
-                        android:clickable="true"
-                        android:elevation="2dp"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="34dp"
-                            android:layout_height="34dp"
-                            android:contentDescription="@null"
-                            android:src="@drawable/bk_ic_calculadora" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="Matemáticas"
-                            android:textColor="#111111"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    android:paddingVertical="4dp" />
 
                 <!-- LIBROS DISPONIBLES -->
                 <TextView

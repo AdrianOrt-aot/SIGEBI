@@ -115,11 +115,12 @@ class MainActivity : AppCompatActivity() {
             presentador.cargarResumen()
         }
         findViewById<LinearLayout>(R.id.navCatalogo).setOnClickListener { abrirCatalogo() }
-        findViewById<LinearLayout>(R.id.navReservas).setOnClickListener { proximamente("Reservas") }
+        findViewById<LinearLayout>(R.id.navReservas).setOnClickListener {
+            startActivity(Intent(this, ActivitySolicitudes::class.java))
+        }
         findViewById<LinearLayout>(R.id.navPerfil).setOnClickListener { abrirPerfil() }
     }
 
-    // Navegación MainActivity -> ActivityCatalogo (opcionalmente con una búsqueda)
     private fun abrirCatalogo(buscar: String? = null) {
         val intent = Intent(this, ActivityCatalogo::class.java)
         if (!buscar.isNullOrBlank()) {
@@ -136,8 +137,6 @@ class MainActivity : AppCompatActivity() {
     private fun proximamente(pantalla: String) {
         Toast.makeText(this, "$pantalla estará disponible pronto", Toast.LENGTH_SHORT).show()
     }
-
-    // ----------------- Métodos que llama el Presentador -----------------
 
     fun mostrarResumen(resumen: dataRespuestaResumen) {
         resumen.usuario?.let { usuario ->
@@ -186,8 +185,6 @@ class MainActivity : AppCompatActivity() {
         )
         finish()
     }
-
-    // ----------------- Auxiliares -----------------
 
     private fun mostrarNombre(nombreCompleto: String) {
         val nombre = nombreCompleto.trim()

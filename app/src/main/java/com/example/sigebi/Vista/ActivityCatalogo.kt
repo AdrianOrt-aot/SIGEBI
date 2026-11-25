@@ -100,6 +100,12 @@ class ActivityCatalogo : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.navPerfil).setOnClickListener {
             startActivity(Intent(this, PerfilActivity::class.java))
         }
+
+        findViewById<LinearLayout>(R.id.navReservas).setOnClickListener {
+            val intent = Intent(this, ActivitySolicitudes::class.java)
+
+            startActivity(intent)
+        }
     }
 
     private fun irAInicio() {
