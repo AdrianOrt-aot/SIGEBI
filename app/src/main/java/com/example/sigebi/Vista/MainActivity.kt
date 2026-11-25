@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
             proximamente("Mis préstamos")
         }
         findViewById<LinearLayout>(R.id.btnAccesoPerfil).setOnClickListener {
-            proximamente("Mi perfil")
+            abrirPerfil()
         }
         findViewById<TextView>(R.id.btnVerCatalogo).setOnClickListener { abrirCatalogo() }
 
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
         }
         findViewById<LinearLayout>(R.id.navCatalogo).setOnClickListener { abrirCatalogo() }
         findViewById<LinearLayout>(R.id.navReservas).setOnClickListener { proximamente("Reservas") }
-        findViewById<LinearLayout>(R.id.navPerfil).setOnClickListener { proximamente("Perfil") }
+        findViewById<LinearLayout>(R.id.navPerfil).setOnClickListener { abrirPerfil() }
     }
 
     // Navegación MainActivity -> ActivityCatalogo (opcionalmente con una búsqueda)
@@ -126,6 +126,11 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra(ActivityCatalogo.EXTRA_BUSCAR, buscar)
         }
         startActivity(intent)
+    }
+    //Navegación MainActivity -> PerfilActivity
+    private fun abrirPerfil() {
+        val intentPerfil = Intent(this, PerfilActivity::class.java)
+        startActivity(intentPerfil)
     }
 
     private fun proximamente(pantalla: String) {

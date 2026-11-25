@@ -5,7 +5,7 @@ import com.example.sigebi.Modelo.PerfilRespons
 import retrofit2.Response
 import com.example.sigebi.Modelo.dataLoginRequest
 import com.example.sigebi.Modelo.dataLoginResponse
-import com.example.sigebi.Modelo.dataPerfilUsuario
+import com.example.sigebi.Modelo.PerfilUsuario
 import com.example.sigebi.Modelo.dataRespuestaApi
 import com.example.sigebi.Modelo.dataRespuestaAreas
 import com.example.sigebi.Modelo.dataRespuestaDetalleLibro
@@ -48,19 +48,14 @@ interface ApiService {
 
     // Contrato de la vista del perfil
     interface View {
-
         fun mostrarCargando(mostrar: Boolean)
-
-        fun mostrarPerfil(perfil: dataPerfilUsuario)
-
+        fun mostrarPerfil(perfil: PerfilUsuario)
         fun mostrarError(mensaje: String)
     }
 
     // Contrato del presentador del perfil
     interface Presenter {
-
         fun cargarPerfil()
-
         fun onDestroy()
     }
 
