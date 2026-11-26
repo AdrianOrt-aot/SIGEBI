@@ -37,11 +37,7 @@ class ActivityCatalogo : AppCompatActivity() {
     private lateinit var rvCategorias: RecyclerView
     private lateinit var adaptadorCategorias: CategoriasAdaptador
     private lateinit var presentadorAreas: clsAreasPresentador
-
-    // Guardar los libros recibidos de la API
     private var librosActuales: List<dataLibro> = emptyList()
-
-    // Guardar la categoria seleccionada
     private var categoriaSeleccionada: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

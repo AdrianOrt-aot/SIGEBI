@@ -18,13 +18,11 @@ import com.example.sigebi.Presentador.clsRecuperacionPresentador
 import com.example.sigebi.R
 
 class RecuperarPasswordActivity : AppCompatActivity() {
-
     companion object {
         const val EXTRA_IDENTIFICADOR = "extra_identificador"
     }
 
     private lateinit var presentador: clsRecuperacionPresentador
-
     private lateinit var rgTipoCuenta: RadioGroup
     private lateinit var txtIdentificador: EditText
     private lateinit var btnEnviarEnlace: Button
