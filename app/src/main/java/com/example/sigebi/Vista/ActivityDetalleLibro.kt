@@ -16,13 +16,12 @@ import com.example.sigebi.Presentador.clsDetalleLibroPresentador
 import com.example.sigebi.R
 import com.example.sigebi.Red.RetrofitClient
 import kotlinx.coroutines.launch
-
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 class ActivityDetalleLibro : AppCompatActivity() {
     private var libroActual: dataDetalleLibro? = null
-
     private var enviandoSolicitud = false
     private var solicitudRegistrada = false
-
     private lateinit var presentador: clsDetalleLibroPresentador
     private lateinit var imgPortadaDetalle: ImageView
     private lateinit var txtTituloDetalle: TextView
@@ -39,6 +38,24 @@ class ActivityDetalleLibro : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_libro)
+
+        // Ajustar la pantalla a las barras del sistema
+        ViewCompat.setOnApplyWindowInsetsListener(
+            findViewById(R.id.detallePrincipal)
+        ) { vista, insets ->
+
+            val barras = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars()
+            )
+
+            vista.setPadding(
+                barras.left,
+                barras.top,
+                barras.right,
+                barras.bottom
+            )
+            insets
+        }
 
         // Relacionar los componentes del XML
         imgPortadaDetalle = findViewById(R.id.imgPortadaDetalle)
@@ -78,7 +95,6 @@ class ActivityDetalleLibro : AppCompatActivity() {
     // Mostrar los datos que entrega el Presentador
     fun mostrarDetalle(libro: dataDetalleLibro) {
         libroActual = libro
-
         txtTituloDetalle.text = libro.titulo
         txtAutorDetalle.text = libro.autor ?: "Autor no disponible"
         txtISBN.text = libro.isbn
@@ -93,32 +109,25 @@ class ActivityDetalleLibro : AppCompatActivity() {
         }
         // Cargar la portada con Glide
         imgPortadaDetalle.cargarPortada(libro.urlImagen)
-
         btnReservarLibro.isEnabled = libro.disponibles > 0 && !enviandoSolicitud && !solicitudRegistrada
     }
-
     private fun confirmarSolicitud() {
         val libro = libroActual ?: return
 
         if (enviandoSolicitud || solicitudRegistrada)
             return
-
         AlertDialog.Builder(this).setTitle("Solicitar préstamo").setMessage(
-            "¿Deseas solicitar «${libro.titulo}» " +
-            "para recogerlo en la biblioteca?"
+            "¿Deseas solicitar «${libro.titulo}» " + "para recogerlo en la biblioteca?"
         ).setNegativeButton("Cancelar", null).setPositiveButton("Solicitar"){ _, _ ->
             registrarSolicitud(libro.idLibro)
         }.show()
     }
-
     private fun registrarSolicitud(idLibro: Int){
         if(enviandoSolicitud)
             return
-
         enviandoSolicitud = true
         btnReservarLibro.isEnabled = false
         btnReservarLibro.text = "Solicitando..."
-
         lifecycleScope.launch {
             try {
                 //Paso 1: Obtener token CSRF
@@ -134,12 +143,10 @@ class ActivityDetalleLibro : AppCompatActivity() {
                     "No se pudo obtener el token de seguridad")
                 }
 
-                val token = respuestaToken.body()?.token ?: throw IllegalStateException(
-                    "El servidor no proporcionó el token CSRF")
+                val token = respuestaToken.body()?.token ?: throw IllegalStateException("El servidor no proporcionó el token CSRF")
 
                 //Paso 2: solicitar el libro
-                val respuesta = RetrofitClient.apiService.crearSolicitud(
-                        token, dataPeticionSolicitud(idLibro))
+                val respuesta = RetrofitClient.apiService.crearSolicitud(token, dataPeticionSolicitud(idLibro))
 
                 if (respuesta.code() == 401){
                     sesionExpirada()
@@ -154,15 +161,13 @@ class ActivityDetalleLibro : AppCompatActivity() {
 
                 //Paso 3: mostrar confirmacion
                 solicitudRegistrada = true
-
                 Toast.makeText(this@ActivityDetalleLibro, respuesta.body()?.mensaje ?:
                 "Solicitud pendiente de entrega", Toast.LENGTH_LONG).show()
 
                 //Paso 4: mostrar las solicitudes
                 abrirSolicitudes()
             } catch (e: Exception) {
-                Toast.makeText(this@ActivityDetalleLibro, e.message ?: "Error de conexión",
-                    Toast.LENGTH_LONG).show()
+                Toast.makeText(this@ActivityDetalleLibro, e.message ?: "Error de conexión", Toast.LENGTH_LONG).show()
             } finally {
                 enviandoSolicitud = false
 
@@ -176,19 +181,13 @@ class ActivityDetalleLibro : AppCompatActivity() {
             }
         }
     }
-
     private fun abrirSolicitudes() {
         startActivity(Intent(this, ActivitySolicitudes::class.java))
     }
-
     private fun sesionExpirada() {
         RetrofitClient.limpiarSesion()
-
         Toast.makeText(this, "Tu sesión expiró. Inicia sesión nuevamente.", Toast.LENGTH_LONG).show()
-
-        startActivity(Intent(this, LoginActivity::class.java).addFlags(
-            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
-
+        startActivity(Intent(this, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
         finish()
     }
 

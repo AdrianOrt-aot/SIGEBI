@@ -20,9 +20,7 @@ import kotlinx.coroutines.launch
 import kotlin.collections.emptyList
 
 class ActivitySolicitudes : AppCompatActivity() {
-
     private val adaptador = SolicitudesAdaptador()
-
     private lateinit var txtVacio: TextView
     private lateinit var progreso: View
 

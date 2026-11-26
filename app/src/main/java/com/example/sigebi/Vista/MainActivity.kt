@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var presentador: clsInicioPresentador
-
     private lateinit var txtAvatar: TextView
     private lateinit var txtSaludo: TextView
     private lateinit var txtTipoUsuario: TextView
@@ -41,7 +40,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var txtEtiquetaMultas: TextView
     private lateinit var txtSinPrestamos: TextView
     private lateinit var progresoInicio: ProgressBar
-
     private lateinit var adaptadorPrestamos: PrestamosAdaptador
     private lateinit var adaptadorNovedades: GaleriaAdaptador
 
@@ -128,6 +126,7 @@ class MainActivity : AppCompatActivity() {
         }
         startActivity(intent)
     }
+
     //Navegación MainActivity -> PerfilActivity
     private fun abrirPerfil() {
         val intentPerfil = Intent(this, PerfilActivity::class.java)

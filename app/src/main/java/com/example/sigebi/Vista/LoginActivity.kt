@@ -17,9 +17,7 @@ import android.content.Intent
 import com.example.sigebi.Vista.MainActivity
 
 class LoginActivity : AppCompatActivity() {
-
     private lateinit var presentador: clsLoginPresentador
-
     private lateinit var txtUsuario: EditText
     private lateinit var txtContrasena: EditText
     private lateinit var btnIngresar: Button
@@ -90,5 +88,4 @@ class LoginActivity : AppCompatActivity() {
 
         finish()
     }
-
 }

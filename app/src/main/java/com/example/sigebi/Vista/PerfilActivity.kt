@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.content.Intent
-import android.widget.Toast
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.ScrollView
@@ -12,9 +11,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-
 import com.example.sigebi.InterfazApi.ApiService
 import com.example.sigebi.Red.RetrofitClient
 import com.example.sigebi.Modelo.PerfilUsuario
@@ -22,7 +21,6 @@ import com.example.sigebi.Presentador.clsPerfilPresentador
 import com.example.sigebi.R
 
 class PerfilActivity : AppCompatActivity(), ApiService.View {
-
     private lateinit var presentador: clsPerfilPresentador
     private lateinit var progressBar: ProgressBar
     private lateinit var layoutPerfil: ScrollView
@@ -35,12 +33,11 @@ class PerfilActivity : AppCompatActivity(), ApiService.View {
     private lateinit var txtCarreraPerfil: TextView
     private lateinit var tvError: TextView
     private lateinit var btnReintentar: Button
+    private lateinit var btnCerrarSesion: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         enableEdgeToEdge()
-
         setContentView(R.layout.activity_perfil)
 
         ViewCompat.setOnApplyWindowInsetsListener(
@@ -60,22 +57,21 @@ class PerfilActivity : AppCompatActivity(), ApiService.View {
             insets
         }
 
-        setContentView(R.layout.activity_perfil)
-
         // Inicializar componentes visuales
         progressBar = findViewById(R.id.progressBar)
         layoutPerfil = findViewById(R.id.layoutPerfil)
         layoutError = findViewById(R.id.layoutError)
-
         txtNombrePerfil = findViewById(R.id.txtNombrePerfil)
         txtCorreoPerfil = findViewById(R.id.txtCorreoPerfil)
         txtTipoPerfil = findViewById(R.id.txtTipoPerfil)
         txtMatriculaPerfil = findViewById(R.id.txtMatriculaPerfil)
         txtTipoSesion = findViewById(R.id.txtTipoSesion)
         txtCarreraPerfil = findViewById(R.id.txtCarreraPerfil)
-
         tvError = findViewById(R.id.tvError)
         btnReintentar = findViewById(R.id.btnReintentar)
+
+        // Relacionar boton cerrar sesion
+        btnCerrarSesion = findViewById(R.id.btnCerrarSesion)
 
         // Obtener servicio Retrofit
         val apiService = RetrofitClient.apiService
@@ -90,13 +86,18 @@ class PerfilActivity : AppCompatActivity(), ApiService.View {
         btnReintentar.setOnClickListener {
             solicitarPerfil()
         }
+
+        // Evento del boton cerrar sesion
+        btnCerrarSesion.setOnClickListener {
+            confirmarCerrarSesion()
+        }
+
         // Configurar barra de navegacion
         configurarNavegacion()
 
         // Cargar perfil
         solicitarPerfil()
     }
-
     private fun solicitarPerfil() {
         presentador.cargarPerfil()
     }
@@ -128,11 +129,9 @@ class PerfilActivity : AppCompatActivity(), ApiService.View {
         }
     }
 
-
     override fun mostrarCargando(mostrar: Boolean) {
 
-        progressBar.visibility =
-            if (mostrar) View.VISIBLE else View.GONE
+        progressBar.visibility = if (mostrar) View.VISIBLE else View.GONE
         if (mostrar) {
             layoutPerfil.visibility = View.GONE
             layoutError.visibility = View.GONE
@@ -140,7 +139,6 @@ class PerfilActivity : AppCompatActivity(), ApiService.View {
     }
 
     override fun mostrarPerfil(perfil: PerfilUsuario) {
-
         progressBar.visibility = View.GONE
         layoutError.visibility = View.GONE
         layoutPerfil.visibility = View.VISIBLE
@@ -155,24 +153,19 @@ class PerfilActivity : AppCompatActivity(), ApiService.View {
         }.joinToString(" ")
 
         // Mostrar correo
-        txtCorreoPerfil.text =
-            perfil.Correo ?: "Sin correo registrado"
+        txtCorreoPerfil.text = perfil.Correo ?: "Sin correo registrado"
 
         // Mostrar tipo de perfil
-        txtTipoPerfil.text =
-            perfil.Puesto ?: perfil.tipo
+        txtTipoPerfil.text = perfil.Puesto ?: perfil.tipo
 
         // Mostrar identificador del usuario
-        txtMatriculaPerfil.text =
-            perfil.identificador
+        txtMatriculaPerfil.text = perfil.identificador
 
         // Mostrar tipo de sesion
-        txtTipoSesion.text =
-            perfil.tipo
+        txtTipoSesion.text = perfil.tipo
 
         // Mostrar area del usuario
-        txtCarreraPerfil.text =
-            perfil.Area ?: "No disponible"
+        txtCarreraPerfil.text = perfil.Area ?: "No disponible"
     }
 
     override fun mostrarError(mensaje: String) {
@@ -186,6 +179,33 @@ class PerfilActivity : AppCompatActivity(), ApiService.View {
         presentador.onDestroy()
         super.onDestroy()
     }
+    private fun confirmarCerrarSesion() {
 
+        AlertDialog.Builder(this)
+            .setTitle("Cerrar sesión")
+            .setMessage("¿Estás seguro de que deseas cerrar sesión?")
+            .setNegativeButton("Cancelar", null)
+            .setPositiveButton("Cerrar sesión") { _, _ ->
+                cerrarSesion()
+            }
+            .show()
+    }
 
+    // Cerrar la sesion
+    private fun cerrarSesion() {
+
+        // Eliminar las cookies guardadas por Retrofit
+        RetrofitClient.limpiarSesion()
+
+        // Regresar al Login
+        val intent = Intent(this, LoginActivity::class.java)
+
+        // Eliminar las pantallas anteriores
+        intent.addFlags(
+            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        )
+
+        startActivity(intent)
+        finish()
+    }
 }
