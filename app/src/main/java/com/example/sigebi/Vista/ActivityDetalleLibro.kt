@@ -101,6 +101,7 @@ class ActivityDetalleLibro : AppCompatActivity() {
         txtCategoriaDetalle.text = libro.tipoLibro
         txtEditorial.text = libro.editorial
         txtEjemplares.text = libro.disponibles.toString()
+        txtDescripcionLibro.text = libro.descripcion.toString()
 
         if (libro.disponibles > 0) {
             txtEstadoDetalle.text = "Disponible"
