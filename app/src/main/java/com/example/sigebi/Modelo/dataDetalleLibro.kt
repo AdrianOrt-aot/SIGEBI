@@ -17,5 +17,6 @@ data class dataDetalleLibro(
     @SerialName("TotalEjemplares") val totalEjemplares: Int,
     @SerialName("Disponibles") val disponibles: Int,
     @SerialName("Ejemplares") val ejemplares: List<dataEjemplar> = emptyList(),
-    @SerialName("URL_Imagen") val urlImagen: String? = null
+    @SerialName("URL_Imagen") val urlImagen: String? = null,
+    @SerialName("Descripcion") val descripcion: String? = null
 )
